@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MYDATABASEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="COUNTRY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COUNTRYNAME" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="COURSE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COURSENAME" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ENROLLMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STUDENTID" Type="int" />
+          <Property Name="COURSEID" Type="int" />
+        </EntityType>
+        <EntityType Name="FOOTBALLCLUB">
+          <Key>
+            <PropertyRef Name="FOOTBALLCLUBID" />
+          </Key>
+          <Property Name="FOOTBALLCLUBID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FOOTBALLCLUBNAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="COUNTRYID" Type="int" />
+        </EntityType>
+        <EntityType Name="PHONE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PHONENAME" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SIMCARD">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SIMCARDNAME" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="STUDENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STUDENTNAME" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__ENROLLMEN__COURS__44FF419A">
+          <End Role="COURSE" Type="Self.COURSE" Multiplicity="0..1" />
+          <End Role="ENROLLMENT" Type="Self.ENROLLMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COURSE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ENROLLMENT">
+              <PropertyRef Name="COURSEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ENROLLMEN__STUDE__440B1D61">
+          <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+          <End Role="ENROLLMENT" Type="Self.ENROLLMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ENROLLMENT">
+              <PropertyRef Name="STUDENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FOOTBALLC__COUNT__3D5E1FD2">
+          <End Role="COUNTRY" Type="Self.COUNTRY" Multiplicity="0..1" />
+          <End Role="FOOTBALLCLUB" Type="Self.FOOTBALLCLUB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COUNTRY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FOOTBALLCLUB">
+              <PropertyRef Name="COUNTRYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SIMCARD__ID__38996AB5">
+          <End Role="PHONE" Type="Self.PHONE" Multiplicity="1" />
+          <End Role="SIMCARD" Type="Self.SIMCARD" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="PHONE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SIMCARD">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MYDATABASEModelStoreContainer">
+          <EntitySet Name="COUNTRY" EntityType="Self.COUNTRY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COURSE" EntityType="Self.COURSE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ENROLLMENT" EntityType="Self.ENROLLMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FOOTBALLCLUB" EntityType="Self.FOOTBALLCLUB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHONE" EntityType="Self.PHONE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SIMCARD" EntityType="Self.SIMCARD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STUDENT" EntityType="Self.STUDENT" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__ENROLLMEN__COURS__44FF419A" Association="Self.FK__ENROLLMEN__COURS__44FF419A">
+            <End Role="COURSE" EntitySet="COURSE" />
+            <End Role="ENROLLMENT" EntitySet="ENROLLMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ENROLLMEN__STUDE__440B1D61" Association="Self.FK__ENROLLMEN__STUDE__440B1D61">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="ENROLLMENT" EntitySet="ENROLLMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FOOTBALLC__COUNT__3D5E1FD2" Association="Self.FK__FOOTBALLC__COUNT__3D5E1FD2">
+            <End Role="COUNTRY" EntitySet="COUNTRY" />
+            <End Role="FOOTBALLCLUB" EntitySet="FOOTBALLCLUB" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SIMCARD__ID__38996AB5" Association="Self.FK__SIMCARD__ID__38996AB5">
+            <End Role="PHONE" EntitySet="PHONE" />
+            <End Role="SIMCARD" EntitySet="SIMCARD" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MYDATABASEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="COUNTRY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COUNTRYNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FOOTBALLCLUBs" Relationship="Self.FK__FOOTBALLC__COUNT__3D5E1FD2" FromRole="COUNTRY" ToRole="FOOTBALLCLUB" />
+        </EntityType>
+        <EntityType Name="COURSE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COURSENAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ENROLLMENTs" Relationship="Self.FK__ENROLLMEN__COURS__44FF419A" FromRole="COURSE" ToRole="ENROLLMENT" />
+        </EntityType>
+        <EntityType Name="ENROLLMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STUDENTID" Type="Int32" />
+          <Property Name="COURSEID" Type="Int32" />
+          <NavigationProperty Name="COURSE" Relationship="Self.FK__ENROLLMEN__COURS__44FF419A" FromRole="ENROLLMENT" ToRole="COURSE" />
+          <NavigationProperty Name="STUDENT" Relationship="Self.FK__ENROLLMEN__STUDE__440B1D61" FromRole="ENROLLMENT" ToRole="STUDENT" />
+        </EntityType>
+        <EntityType Name="FOOTBALLCLUB">
+          <Key>
+            <PropertyRef Name="FOOTBALLCLUBID" />
+          </Key>
+          <Property Name="FOOTBALLCLUBID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FOOTBALLCLUBNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="COUNTRYID" Type="Int32" />
+          <NavigationProperty Name="COUNTRY" Relationship="Self.FK__FOOTBALLC__COUNT__3D5E1FD2" FromRole="FOOTBALLCLUB" ToRole="COUNTRY" />
+        </EntityType>
+        <EntityType Name="PHONE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PHONENAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SIMCARD" Relationship="Self.FK__SIMCARD__ID__38996AB5" FromRole="PHONE" ToRole="SIMCARD" />
+        </EntityType>
+        <EntityType Name="SIMCARD">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SIMCARDNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PHONE" Relationship="Self.FK__SIMCARD__ID__38996AB5" FromRole="SIMCARD" ToRole="PHONE" />
+        </EntityType>
+        <EntityType Name="STUDENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STUDENTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ENROLLMENTs" Relationship="Self.FK__ENROLLMEN__STUDE__440B1D61" FromRole="STUDENT" ToRole="ENROLLMENT" />
+        </EntityType>
+        <Association Name="FK__FOOTBALLC__COUNT__3D5E1FD2">
+          <End Role="COUNTRY" Type="Self.COUNTRY" Multiplicity="0..1" />
+          <End Role="FOOTBALLCLUB" Type="Self.FOOTBALLCLUB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COUNTRY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FOOTBALLCLUB">
+              <PropertyRef Name="COUNTRYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ENROLLMEN__COURS__44FF419A">
+          <End Role="COURSE" Type="Self.COURSE" Multiplicity="0..1" />
+          <End Role="ENROLLMENT" Type="Self.ENROLLMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COURSE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ENROLLMENT">
+              <PropertyRef Name="COURSEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ENROLLMEN__STUDE__440B1D61">
+          <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+          <End Role="ENROLLMENT" Type="Self.ENROLLMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ENROLLMENT">
+              <PropertyRef Name="STUDENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SIMCARD__ID__38996AB5">
+          <End Role="PHONE" Type="Self.PHONE" Multiplicity="1" />
+          <End Role="SIMCARD" Type="Self.SIMCARD" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="PHONE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SIMCARD">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MYDATABASEEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="COUNTRies" EntityType="Self.COUNTRY" />
+          <EntitySet Name="COURSEs" EntityType="Self.COURSE" />
+          <EntitySet Name="ENROLLMENTs" EntityType="Self.ENROLLMENT" />
+          <EntitySet Name="FOOTBALLCLUBs" EntityType="Self.FOOTBALLCLUB" />
+          <EntitySet Name="PHONEs" EntityType="Self.PHONE" />
+          <EntitySet Name="SIMCARDs" EntityType="Self.SIMCARD" />
+          <EntitySet Name="STUDENTs" EntityType="Self.STUDENT" />
+          <AssociationSet Name="FK__FOOTBALLC__COUNT__3D5E1FD2" Association="Self.FK__FOOTBALLC__COUNT__3D5E1FD2">
+            <End Role="COUNTRY" EntitySet="COUNTRies" />
+            <End Role="FOOTBALLCLUB" EntitySet="FOOTBALLCLUBs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ENROLLMEN__COURS__44FF419A" Association="Self.FK__ENROLLMEN__COURS__44FF419A">
+            <End Role="COURSE" EntitySet="COURSEs" />
+            <End Role="ENROLLMENT" EntitySet="ENROLLMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ENROLLMEN__STUDE__440B1D61" Association="Self.FK__ENROLLMEN__STUDE__440B1D61">
+            <End Role="STUDENT" EntitySet="STUDENTs" />
+            <End Role="ENROLLMENT" EntitySet="ENROLLMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SIMCARD__ID__38996AB5" Association="Self.FK__SIMCARD__ID__38996AB5">
+            <End Role="PHONE" EntitySet="PHONEs" />
+            <End Role="SIMCARD" EntitySet="SIMCARDs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MYDATABASEModelStoreContainer" CdmEntityContainer="MYDATABASEEntities">
+          <EntitySetMapping Name="COUNTRies">
+            <EntityTypeMapping TypeName="MYDATABASEModel.COUNTRY">
+              <MappingFragment StoreEntitySet="COUNTRY">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="COUNTRYNAME" ColumnName="COUNTRYNAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COURSEs">
+            <EntityTypeMapping TypeName="MYDATABASEModel.COURSE">
+              <MappingFragment StoreEntitySet="COURSE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="COURSENAME" ColumnName="COURSENAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ENROLLMENTs">
+            <EntityTypeMapping TypeName="MYDATABASEModel.ENROLLMENT">
+              <MappingFragment StoreEntitySet="ENROLLMENT">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="STUDENTID" ColumnName="STUDENTID" />
+                <ScalarProperty Name="COURSEID" ColumnName="COURSEID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FOOTBALLCLUBs">
+            <EntityTypeMapping TypeName="MYDATABASEModel.FOOTBALLCLUB">
+              <MappingFragment StoreEntitySet="FOOTBALLCLUB">
+                <ScalarProperty Name="FOOTBALLCLUBID" ColumnName="FOOTBALLCLUBID" />
+                <ScalarProperty Name="FOOTBALLCLUBNAME" ColumnName="FOOTBALLCLUBNAME" />
+                <ScalarProperty Name="COUNTRYID" ColumnName="COUNTRYID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHONEs">
+            <EntityTypeMapping TypeName="MYDATABASEModel.PHONE">
+              <MappingFragment StoreEntitySet="PHONE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PHONENAME" ColumnName="PHONENAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIMCARDs">
+            <EntityTypeMapping TypeName="MYDATABASEModel.SIMCARD">
+              <MappingFragment StoreEntitySet="SIMCARD">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SIMCARDNAME" ColumnName="SIMCARDNAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STUDENTs">
+            <EntityTypeMapping TypeName="MYDATABASEModel.STUDENT">
+              <MappingFragment StoreEntitySet="STUDENT">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="STUDENTNAME" ColumnName="STUDENTNAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
