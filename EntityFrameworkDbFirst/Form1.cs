@@ -120,10 +120,5 @@ namespace EntityFrameworkDbFirst
                 MessageBox.Show($"Error deleting country: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
