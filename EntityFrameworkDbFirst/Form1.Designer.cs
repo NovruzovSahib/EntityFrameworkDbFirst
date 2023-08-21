@@ -64,7 +64,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(491, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(715, 332);
+            this.dataGridView1.Size = new System.Drawing.Size(826, 332);
             this.dataGridView1.TabIndex = 1;
             // 
             // insertbtn
@@ -125,7 +125,7 @@
             this.searchtxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchtxt.Location = new System.Drawing.Point(321, 91);
             this.searchtxt.Name = "searchtxt";
-            this.searchtxt.Size = new System.Drawing.Size(48, 40);
+            this.searchtxt.Size = new System.Drawing.Size(96, 40);
             this.searchtxt.TabIndex = 7;
             // 
             // updateidtxt
@@ -133,7 +133,7 @@
             this.updateidtxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.updateidtxt.Location = new System.Drawing.Point(321, 189);
             this.updateidtxt.Name = "updateidtxt";
-            this.updateidtxt.Size = new System.Drawing.Size(48, 40);
+            this.updateidtxt.Size = new System.Drawing.Size(96, 40);
             this.updateidtxt.TabIndex = 8;
             // 
             // updatetxt
@@ -149,7 +149,7 @@
             this.deleteidtxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deleteidtxt.Location = new System.Drawing.Point(321, 281);
             this.deleteidtxt.Name = "deleteidtxt";
-            this.deleteidtxt.Size = new System.Drawing.Size(48, 40);
+            this.deleteidtxt.Size = new System.Drawing.Size(96, 40);
             this.deleteidtxt.TabIndex = 11;
             // 
             // label1
@@ -186,7 +186,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1206, 332);
+            this.ClientSize = new System.Drawing.Size(1317, 332);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
